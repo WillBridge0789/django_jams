@@ -9,12 +9,12 @@ class Artist(models.Model):
 class Album(models.Model):
     name = models.CharField(max_length=200)
     release_year = models.DateField()
-    cover_art = models.UrlField(null=True)
+    cover_art = models.URLField(null=True)
 
 class Songs(models.Model):
     name = models.CharField(max_length=200)
     duration = models.CharField(max_length=100, null=False)
-    cover_art = models.UrlField(null=True)
+    cover_art = models.URLField(null=True)
 
 class Genres(models.Model):
     name = models.CharField(max_length=200)
