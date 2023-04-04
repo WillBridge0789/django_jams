@@ -1,20 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from rest_framework import viewsets, permissions
-from .models import Artist, Album, Songs, Genre, Playlist
-from .serializers import (
-    ArtistSerializer,
-    AlbumSerializer,
-    SongsSerializer,
-    GenreSerializer,
-    PlaylistSerializer,
-)
+from .models import *
+from .serializers import *
 
 # Create your views here.
 #--------------------------------------------------------------------------------#
-# def ArtistViewSet(request):
-    # queryset = Artist.objects.all()
-    # serializer_class = ArtistSerializer
+class ArtistViewSet(viewsets.ModelViewSet):
+    queryset = Artist.objects.all()
+    serializer_class = ArtistSerializer
 
 # def AlbumViewSet(request):
     # queryset = Album.objects.all()
@@ -24,9 +18,9 @@ from .serializers import (
     # queryset = Songs.objects.all()
     # serializer_class = SongsSerializer
 
-# def GenreViewSet(request):
-    # queryset = Genre.objects.all()
-    # serializer_class = GenreSerializer
+class GenreViewSet(viewsets.ModelViewSet):
+     queryset = Genres.objects.all()
+     serializer_class = GenreSerializer
 
 # def PlaylistViewSet(request):
     # queryset = Playlist.objects.all()
