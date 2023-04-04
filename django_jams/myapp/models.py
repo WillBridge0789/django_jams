@@ -6,9 +6,9 @@ class Artist(models.Model):
      bio = models.TextField(max_length=500, null=True)
 #     image = models.URLField(null=True)
 
-# class Album(models.Model):
-#     name = models.CharField(max_length=200)
-#     release_year = models.DateField()
+class Album(models.Model):
+     name = models.CharField(max_length=200)
+     release_date = models.DateField()
 #     cover_art = models.URLField(null=True)
 
 # class Songs(models.Model):

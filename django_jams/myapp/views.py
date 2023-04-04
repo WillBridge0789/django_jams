@@ -10,9 +10,9 @@ class ArtistViewSet(viewsets.ModelViewSet):
     queryset = Artist.objects.all()
     serializer_class = ArtistSerializer
 
-# def AlbumViewSet(request):
-    # queryset = Album.objects.all()
-    # serializer_class = AlbumSerializer
+class AlbumViewSet(viewsets.ModelViewSet):
+    queryset = Album.objects.all()
+    serializer_class = AlbumSerializer
 
 # def SongsViewSet(request):
     # queryset = Songs.objects.all()
