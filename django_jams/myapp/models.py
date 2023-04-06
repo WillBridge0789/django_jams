@@ -13,8 +13,9 @@ class Album(models.Model):
 
 class Songs(models.Model):
      name = models.CharField(max_length=200)
-     duration = models.CharField(max_length=100, null=False)
-#     cover_art = models.URLField(null=True)
+     duration = models.DurationField()
+
+#    cover_art = models.URLField(null=True)
 
 class Genres(models.Model):
      name = models.CharField(max_length=200)
