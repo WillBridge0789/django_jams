@@ -8,15 +8,32 @@ from .serializers import *
 #--------------------------------------------------------------------------------#
 class ArtistViewSet(viewsets.ModelViewSet):
     queryset = Artist.objects.all()
-    serializer_class = ArtistSerializer
+    serializer_class = ArtistReadOnlySerializer
+    def get_serializer_class(self):
+        if self.action in ['list', 'retrieve']:
+            return ArtistWriteSerializer
+        else:
+            return ArtistReadOnlySerializer
+
+
 
 class AlbumViewSet(viewsets.ModelViewSet):
     queryset = Album.objects.all()
-    serializer_class = AlbumSerializer
+    def get_serializer_class(self):
+        if self.action in ["create", "update", "partial_update", "destroy"]:
+            return AlbumWriteSerializer
+        return AlbumReadOnlySerializer
 
 class SongsViewSet(viewsets.ModelViewSet):
     queryset = Songs.objects.all()
-    serializer_class = SongsSerializer
+   
+    def get_serializer_class(self):
+        if self.action in ["create", "update", "partial_update", "destroy"]:
+            return SongsWriteSerializer
+        return SongsReadOnlySerializer
+
+
+
 
 class GenreViewSet(viewsets.ModelViewSet):
      queryset = Genres.objects.all()

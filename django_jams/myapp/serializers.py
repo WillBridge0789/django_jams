@@ -1,27 +1,60 @@
 from rest_framework import serializers
 from .models import *
 
+
+
+#---Genre Serialiazers-----------------------------------------------------------------
+
 class GenreSerializer(serializers.ModelSerializer):
     class Meta:
         model = Genres
-        fields = [
-            'id',
-            'name',
-            ]
+        fields = ['id','name',]
 
-class ArtistSerializer(serializers.ModelSerializer):
+
+#---Song Serialiazers-----------------------------------------------------------------
+
+# class SongsSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Songs
+#         fields = ['name', 'duration',]
+
+class SongsReadOnlySerializer(serializers.ModelSerializer):
+    genres = GenreSerializer(many=True, read_only=True)
     class Meta:
-        model = Artist
-        fields = ['name', 'bio',]
+        model = Songs
+        fields = ['name', 'duration', 'genres']
 
-class AlbumSerializer(serializers.ModelSerializer):
+class SongsWriteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Songs
+        fields = ['name', 'duration',]
+
+
+#---Album Serialiazers-----------------------------------------------------------------
+
+class AlbumWriteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Album
         fields = ['name', 'release_date',]
 
-class SongsSerializer(serializers.ModelSerializer):
-    # albums = AlbumSerializer(many=True)
-
+class AlbumReadOnlySerializer(serializers.ModelSerializer):
     class Meta:
-        model = Songs
-        fields = ['name', 'duration',]
+        model = Album
+        fields = ['name', 'release_date',]
+
+#---Artist Serialiazers-----------------------------------------------------------------
+
+class ArtistWriteSerializer(serializers.ModelSerializer):
+    albums = AlbumWriteSerializer(many=True)
+    songs = SongsWriteSerializer(many=True)
+    class Meta:
+        model = Artist
+        fields = ['id', 'name', 'bio', 'albums', 'songs', 'genres']
+
+class ArtistReadOnlySerializer(serializers.ModelSerializer):
+    albums = AlbumReadOnlySerializer(many=True)
+    class Meta:
+        model = Artist
+        fields = ['id', 'name', 'bio', 'albums', 'songs', 'genres']
+
+
