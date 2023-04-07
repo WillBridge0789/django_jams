@@ -13,11 +13,6 @@ class GenreSerializer(serializers.ModelSerializer):
 
 #---Song Serialiazers-----------------------------------------------------------------
 
-# class SongsSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Songs
-#         fields = ['name', 'duration',]
-
 class SongsReadOnlySerializer(serializers.ModelSerializer):
     genres = GenreSerializer(many=True, read_only=True)
     class Meta:
@@ -52,7 +47,7 @@ class ArtistWriteSerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'bio', 'albums', 'songs', 'genres']
 
 class ArtistReadOnlySerializer(serializers.ModelSerializer):
-    albums = AlbumReadOnlySerializer(many=True)
+    albums = AlbumReadOnlySerializer(many=True, read_only=True)
     class Meta:
         model = Artist
         fields = ['id', 'name', 'bio', 'albums', 'songs', 'genres']

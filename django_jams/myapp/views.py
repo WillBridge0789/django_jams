@@ -7,7 +7,7 @@ from .serializers import *
 # Create your views here.
 #--------------------------------------------------------------------------------#
 class ArtistViewSet(viewsets.ModelViewSet):
-    queryset = Artist.objects.all()
+    queryset = Artist.objects.all().order_by('id')
     serializer_class = ArtistReadOnlySerializer
     def get_serializer_class(self):
         if self.action in ['list', 'retrieve']:
