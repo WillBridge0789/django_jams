@@ -30,12 +30,12 @@ class SongsWriteSerializer(serializers.ModelSerializer):
 class AlbumWriteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Album
-        fields = ['name', 'release_date',]
+        fields = ['name', 'release_date', 'songs']
 
 class AlbumReadOnlySerializer(serializers.ModelSerializer):
     class Meta:
         model = Album
-        fields = ['name', 'release_date',]
+        fields = ['name', 'release_date', 'songs']
 
 #---Artist Serialiazers-----------------------------------------------------------------
 
